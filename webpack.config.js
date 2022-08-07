@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 const clientConfig = {
-    entry: './src/client/index.js',
+    entry: './src/client/index.tsx',
     output: {
         path: path.resolve(__dirname, 'public'),
         filename: 'client.js',
@@ -11,10 +11,10 @@ const clientConfig = {
     module: {
         rules: [
             {
-                test: /\.(js)$/,
+                test: /\.tsx?$/,
                 exclude: /node_modules/,
                 use: {
-                    loader: 'babel-loader'
+                    loader: 'ts-loader'
                 }
             }
         ]
@@ -23,11 +23,14 @@ const clientConfig = {
         new webpack.DefinePlugin({
             __isClient__: true
         })
-    ]
+    ],
+    resolve: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    }
 }
 
 const serverConfig = {
-    entry: './src/server/index.js',
+    entry: './src/server/index.tsx',
     target: 'node',
     output: {
         path: __dirname,
@@ -37,10 +40,10 @@ const serverConfig = {
     module: {
         rules: [
             {
-                test: /\.(js)$/,
+                test: /\.tsx?$/,
                 exclude: /node_modules/,
                 use: {
-                    loader: 'babel-loader'
+                    loader: 'ts-loader'
                 }
             }
         ]
@@ -49,7 +52,10 @@ const serverConfig = {
         new webpack.DefinePlugin({
             __isClient__: false
         })
-    ]
+    ],
+    resolve: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    }
 }
 
 module.exports = [

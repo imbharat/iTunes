@@ -2,6 +2,12 @@ import axios from 'axios';
 const URL = `https://api.github.com/search/repositories`;
 
 class RepositorySearch {
+    private language: String;
+    private sort: String;
+    private order: String;
+    private type: String;
+    private page: Number;
+    private per_page: Number;
     constructor(language = 'all', sort = 'stars', order = 'desc', 
         type = 'Repositories', page = 0, per_page = 9){
             this.language = language;
