@@ -5,9 +5,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "pre-build-dev": "webpack -w --mode=development",
-    "build-dev": "npx ts-node-dev --inspect -- dist/server/index.js",
-    "start-dev": "npm run pre-build-dev && npm run build-dev",
+    "wp-dev": "webpack --mode=development",
+    "dev": "npx ts-node-dev --inspect -- src/server/index.tsx",
 
     "pre-build": "webpack --mode=production",
     "build": "ts-node dist/server/index.js",

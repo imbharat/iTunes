@@ -26,7 +26,8 @@ const clientConfig = {
     ],
     resolve: {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
-    }
+    },
+    watch: true
 }
 
 const serverConfig = {
@@ -55,7 +56,8 @@ const serverConfig = {
     ],
     resolve: {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
-    }
+    },
+    watch: true
 }
 
 module.exports = [
