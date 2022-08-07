@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "pre-build-dev": "webpack -w --mode=development",
-    "build-dev": "ts-node-dev --inspect dist/server/index.js",
+    "build-dev": "npx ts-node-dev --inspect -- dist/server/index.js",
     "start-dev": "npm run pre-build-dev && npm run build-dev",
 
     "pre-build": "webpack --mode=production",
