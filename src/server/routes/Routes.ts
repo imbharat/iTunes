@@ -10,7 +10,7 @@ const routes = [
     {
         path: '/popular/:id',
         component: Repositories,
-        fetchInitialData: (path) => {
+        fetchInitialData: (path: String) => {
             return new RepositorySearch(path.split('/').pop()).fetchRepositories();
         }
     }
