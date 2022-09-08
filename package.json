@@ -7,10 +7,9 @@
   "scripts": {
     "wp-dev": "webpack --mode=development",
     "dev": "env=DEV npx ts-node-dev --inspect -- src/server/index.tsx",
-    "pre-build": "webpack --mode=production",
-    "build": "ts-node src/server/index.tsx",
-    "start": "npm run pre-build && npm run build",
-    "test": "jest --watch",
+    "build": "webpack --mode=production",
+    "start": "ts-node src/server/index.tsx",
+    "test": "jest",
     "updateSnapshots": "jest --updateSnapshot"
   },
   "devDependencies": {
