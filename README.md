@@ -9,19 +9,19 @@ It is a server-side rendered app. For the first render the results returned are 
 
 Run the command line tool and execute these commands one by one in sequence.
 
-#### npm install
+#### yarn install
 This command would install all the dependencies needed for the application to run.
 
-#### npm run build
+#### yarn run build
 This command would run the webpack under the hood, and the client.js bundle would be created inside the public directory.
 
-#### npm start
+#### yarn start
 This command would start the server, and the site could be accessed by browsing: http://localhost:3000
 
 ### Steps to Execute Tests:
 
-#### npm test
-This command would run jest under the hood and execute all the tests.
+#### yarn test
+This command would run jest under the hood and execute all the tests. Test coverage can be checked by opening index.html inside '/iTunes/coverage/lcov-report'.
 
 ## NOTES
 
