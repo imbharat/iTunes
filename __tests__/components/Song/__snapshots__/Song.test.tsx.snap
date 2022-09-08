@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Song Component Tests song component rendering 1`] = `
+<div
+  className="sc-bczRLJ gBgBPG"
+>
+  <div
+    className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-bhp9pd-MuiPaper-root-MuiCard-root"
+    onClick={[Function]}
+  >
+    <img
+      alt="G9"
+      className="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-o69gx8-MuiCardMedia-root"
+      src="https://is4-ssl.mzstatic.com/image/thumb/Music124/v4/88/aa/ed/88aaed59-2c30-27d4-7468-4b95ef5ee7bf/mzm.iwrtpfbi.jpg/100x100bb.jpg"
+    />
+    <div
+      className="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+    >
+      <div
+        className="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom trackN css-1vw6mcs-MuiTypography-root"
+      >
+        G9
+      </div>
+      <div
+        className="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom collectionN css-18k87ye-MuiTypography-root"
+      >
+        Space Ship One
+      </div>
+      <div
+        className="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom artistN css-18k87ye-MuiTypography-root"
+      >
+        -by: Paul Gilbert
+      </div>
+    </div>
+  </div>
+</div>
+`;

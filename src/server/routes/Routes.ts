@@ -1,19 +1,66 @@
-import Home from "../../react/components/Home";
-import Repositories from "../../react/components/Repositories";
-import RepositorySearch from "../controllers/RepositorySearch";
+import SearchController from "../controllers/SearchController";
+import SearchService from "../services/SearchService";
+import { Route } from "../../types/custom"
+import AboutController from "../controllers/AboutController";
+import AboutService from "../services/AboutService";
+import { Filter } from "../../redux/Songs/Types";
 
-const routes = [
+const ROUTES: Route[] = [
     {
         path: '/',
-        component: Home
+        method: 'get',
+        controller: SearchController,
+        controllerMethod: 'fetchData',
+        isAPICall: false,
+        validations: [],
+        fetchInitialData: (service: SearchService, filter: Filter) => {
+            return service.fetchData(filter);
+        }
     },
     {
-        path: '/popular/:id',
-        component: Repositories,
-        fetchInitialData: (path: String) => {
-            return new RepositorySearch(path.split('/').pop()).fetchRepositories();
+        path: '/search',
+        method: 'get',
+        controller: SearchController,
+        controllerMethod: 'fetchData',
+        isAPICall: false,
+        validations: [],
+        fetchInitialData: (service: SearchService, filter: Filter) => {
+            return service.fetchData(filter);
+        }
+    },
+    {
+        path: '/about',
+        method: 'get',
+        controller: AboutController,
+        controllerMethod: 'fetchData',
+        isAPICall: false,
+        validations: [],
+        fetchInitialData: (service: AboutService) => {
+            return service.fetchData();
+        }
+    },
+    {
+        path: '/api/search',
+        method: 'get',
+        controller: SearchController,
+        controllerMethod: 'fetchData',
+        isAPICall: true,
+        validations: [],
+        fetchInitialData: (service: SearchService, filter: Filter) => {
+            return service.fetchData(filter);
+        }
+    },
+    {
+        path: '/api/about',
+        method: 'get',
+        controller: AboutController,
+        controllerMethod: 'fetchData',
+        isAPICall: true,
+        validations: [],
+        fetchInitialData: (service: AboutService) => {
+            return service.fetchData();
         }
     }
 ];
 
-export default routes;
+export default ROUTES;

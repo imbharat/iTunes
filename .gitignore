@@ -1,5 +1,6 @@
 /node_modules
-/public
+/public/client.js
 /dist
 yarn.lock
 server.js
+/coverage

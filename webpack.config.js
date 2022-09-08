@@ -12,7 +12,10 @@ const clientConfig = {
         rules: [
             {
                 test: /\.tsx?$/,
-                exclude: /node_modules/,
+                exclude: [
+                    /node_modules/,
+                    /__tests__/
+                ],
                 use: {
                     loader: 'ts-loader'
                 }
@@ -42,7 +45,10 @@ const serverConfig = {
         rules: [
             {
                 test: /\.tsx?$/,
-                exclude: /node_modules/,
+                exclude: [
+                    /node_modules/,
+                    /__tests__/
+                ],
                 use: {
                     loader: 'ts-loader'
                 }

@@ -1,38 +1,59 @@
 import express from 'express';
 import cors from 'cors';
+import path from 'node:path/win32';
+import { validationResult } from 'express-validator';
+import bodyParser from 'body-parser';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { matchPath } from 'react-router-dom';
+import { StaticRouter } from "react-router-dom/server";
+import { ServerStyleSheet } from 'styled-components'; 
 import serialize from 'serialize-javascript';
-import routes from './routes/Routes';
-import App from '../react/components/App'
+import App from '../react/components/App';
+import ROUTES from './routes/Routes';
+import { Provider } from 'react-redux';
+import Store from '../redux/Store';
 
-const app = express();
+const app: any = express();
 
 app.use(cors());
+app.set('view engine', 'ejs')
+app.set('views', path.join(__dirname, './views'))
 app.use(express.static('public'));
 
-app.get('/', (req, res) => {
-    const activeRoute = routes[1];
-    const prom = activeRoute.fetchInitialData ? 
-        activeRoute.fetchInitialData(req.path) : Promise.resolve();
-
-    prom.then(data => {
-        const markup = renderToString(
-            <App data={data} />
-        );
-        res.send(`
-            <html>
-                <head>
-                    <script type=text/javascript src='/client.js' defer></script>
-                    <script>window.__INITIAL_DATA__ = ${serialize(data)}</script>
-                </head>
-                <body>
-                    <div id='app'>${markup}</div>
-                </body>
-            </html>
-        `)
-    }).catch(err => console.log(err));
+//initialize routes
+ROUTES.forEach(item => {
+    app[item.method](item.path, bodyParser.json(), ...item.validations,  async(req: express.Request, res: express.Response, next: express.NextFunction) => {
+        const Controller = item.controller["getInstance"]();
+        try {
+            const errors = validationResult(req);
+            if(!errors.isEmpty()){
+                return res.status(400).json({ errors: errors.array() });
+            }
+            const data = await Controller[item.controllerMethod](req, res);
+            if(!item.isAPICall){
+                const sheet = new ServerStyleSheet();
+                const markup = renderToString(sheet.collectStyles(
+                    <StaticRouter location={req.url}>
+                        <Provider store={Store}>
+                            <App data={data} />
+                        </Provider>
+                    </StaticRouter>
+                ));
+                const styles = sheet.getStyleTags();
+                res.render('home', {
+                    markup: markup,
+                    styles: styles,
+                    data: serialize(data)
+                })
+            }
+            else{
+                res.json(data);
+            }
+        }
+        catch(ex) {
+            res.status(500).json('Something Went Wrong!');
+        }
+    });
 })
 
 app.listen(3000);
